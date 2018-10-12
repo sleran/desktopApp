@@ -17,9 +17,9 @@
   },
   "homepage": "https://github.com/sleran/desktopApp#readme",
   "dependencies": {
-    "electron": "^3.0.3",
-    "electron-packager": "^12.2.0",
-    "electron-squirrel-startup": "^1.0.0",
-    "electron-winstaller": "^2.7.0"
+    "electron": "^3.0.3"
+  },
+  "devDependencies": {
+    "electron-builder": "^20.28.4"
   }
 }
