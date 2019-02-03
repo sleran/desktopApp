@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/papercss@1.5.4/dist/paper.min.css">
+    <title>Tilføj et punkt til listen</title>
+</head>
+<body>
+    <form>
+        <div>
+            <label>Skriv et punkt</label>
+            <input type="text" id="item" autofocus>
+        </div>
+        <button class="container" type="submit">Tilføj punkt</button>
+    </form>
+
+    <script>
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+
+        const form = document.querySelector('form');
+        form.addEventListener('submit', submitForm);
+
+        function submitForm(e){
+            e.preventDefault();
+            const item = document.querySelector('#item').value;
+            ipcRenderer.send('item:add', item);
+        }
+    </script>
+</body>
+</html>

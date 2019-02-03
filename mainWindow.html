@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/papercss@1.5.4/dist/paper.min.css">
+    <title>Indkøbsliste</title>
+</head>
+<body>
+    <header class="background-warning border border-2 border-primary padding-none row flex-middle">
+        <h1 class="padding-none">Indkøbsliste</h1>
+    </header>
+    
+    <ul class="child-borders child-shadows-hover"></ul>
+
+    <script>
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+        const ul = document.querySelector('ul');
+        
+        //Add item
+        ipcRenderer.on('item:add', function(e,item){ 
+            const li = document.createElement('li');
+            const itemText = document.createTextNode(item);
+            li.setAttribute('class', 'margin')
+            li.appendChild(itemText);
+            ul.appendChild(li);
+        });
+        
+        //Clear items
+        ipcRenderer.on('item:clear', function(){
+            ul.innerHTML = '';
+        });
+
+        //remove item
+        ul.addEventListener('dblclick', removeItem);
+
+        function removeItem(e){
+            e.target.remove();
+        }
+    </script>
+</body>
+</html>
